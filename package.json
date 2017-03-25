@@ -1,0 +1,28 @@
+{
+  "name": "weekend_challenge3",
+  "version": "1.0.0",
+  "description": "Hello Primers!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigbaird/weekend_challenge_3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craigbaird/weekend_challenge_3/issues"
+  },
+  "homepage": "https://github.com/craigbaird/weekend_challenge_3#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "install": "^0.8.7",
+    "jquery": "^3.2.1",
+    "npm": "^4.4.1",
+    "pg": "^6.1.5"
+  }
+}
