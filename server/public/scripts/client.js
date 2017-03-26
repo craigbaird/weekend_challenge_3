@@ -38,7 +38,7 @@ $(document).ready(function(){
       };
       $.ajax({
         type: "PUT",
-        url: "/tasks/edit", // Similar to POST (data & req.body) /////////////////////////// change this maybe
+        url: "/todo/edit", // Similar to POST (data & req.body) /////////////////////////// change this maybe
         data: updateToMake,
         success: function(){
           console.log("updated");
@@ -48,7 +48,7 @@ $(document).ready(function(){
     } else {
       $.ajax({
         type: "POST",
-        url: "/tasks/add", /////////////////////////////////////////// maybe
+        url: "/todo/add", /////////////////////////////////////////// maybe
         data: {task: $('#task').val()},
         success: function(response) {
           // Refresh our data
