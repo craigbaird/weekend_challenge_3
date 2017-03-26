@@ -32,14 +32,14 @@ Adjust the logic so that completed tasks are brought to the bottom of the page, 
 
 ##Checklist
 
-- [ ] Start with single operator (+)
-- [ ] Add a calculate route in 'app.js'
-- [ ] Test the route using ajax
-- [ ] Create our HTML form
-- [ ] Add remaining operators (-, /, x)
-- [ ] Move the logic on the server into a module
+- [X] Spin up server
+- [X] Create database
+- [ ] Take in input from user
+- [ ] Add input to database
+- [ ] append data to DOM
+- [ ] append complete and delete buttons to DOM
 
 ## Stretch
-- [ ] Three second timer on response
-- [ ] Check for empty values
-- [ ] UI for calculator
+- [ ]
+- [ ]
+- [ ]

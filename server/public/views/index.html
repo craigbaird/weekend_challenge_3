@@ -3,14 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>TO DO Application</title>
+    <script type="text/javascript" src = "vendors/jquery.js">
+    </script>
+    <link type="text/css" rel="stylesheet" href="/styles/style.css">
+    <script type="text/javascript" src = "/scripts/client.js">
+    </script>
   </head>
   <body>
-    <h1>Welcome to the TO DO Application!</h1>
-    <p id="subtitle">Enter a task to get started...</p>
-    <h2>Add a task</h2>
-      <input id="addTask"></input>
-    <h2>Tasks</h2>
-    <button id="completeBtn">Complete</button>
-    <button id="deleteBtn">Delete</button>
-  </body>
+  <h1>TO DO List</h1>
+  <h3 id="formTitle">Add Entry</h3>
+  <form id="taskForm">
+    <input type="text" placeholder="task" name="task" id="task">
+    <input type="submit" value="submit">
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Task</th>
+      </tr>
+    </thead>
+    <tbody id="tasks">
+    </tbody>
+  </table>
+</body>
 </html>
