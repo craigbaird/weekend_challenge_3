@@ -1,19 +1,32 @@
 var editing = false;
 var taskId = 0;
+var compTask;
 
 $(document).ready(function(){
   console.log('jQuery sourced');
   getToDoList();
 
-//////////////////////////////
   // functionality for the complete button
   $('#tasks').on('click', '.complete', function(){
-    console.log('Complete task: '+ $(this).data('task'));
+    console.log('Complete task: '+ $(this).data('comptask'));
     $(this).css("background-color", "green");
+    taskId = $(this).data('comptask');
+    console.log($(this));
+    console.log(taskId);
+    var updateToComplete = {
+      id: taskId,
+      compTask: "X"
+    };
+    $.ajax({
+      type: "PUT",
+      url: "/todo/completed/",
+      data: updateToComplete,
+      success: function(){
+        console.log("updated");
+        getToDoList();
+      }
+    });
   });
-//////////////////////////////
-
-
 
   // functionality for the delete button
   $('#tasks').on('click', '.delete', function(){
@@ -70,7 +83,7 @@ $(document).ready(function(){
     }
     $('#task').val('');
   });
-});
+}); // end on ready
 
 // gets to do list from database and appends to the DOM
 // appends new tasks and buttons as they are added
@@ -88,12 +101,8 @@ function getToDoList() {
         $el.append('<td>' + task.id + '</td>');
         $el.append('<td>' + task.task + '</td>');
         $el.append('<td>' + task.completed + '</td>');
-
-
-        $el.append('<td class="completedTask"><button class="complete" data-task="' +  // complete button //////////////////////////////////
+        $el.append('<td class="completedTask"><button class="complete" data-comptask="' +  // complete button //////////////////////////////////
         task.id + '">Complete</button></td>');
-
-
         $el.append('<td><button class="delete" data-task="' +
         task.id + '">Delete</button></td>');
         $el.append('<td><button class="edit" data-task="' +

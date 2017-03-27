@@ -1,20 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-
+// var connectionString = 'postgres://localhost:5432/todotest'; // different way to connect to database
 
 var config = {
   database: 'craigbaird',
   host: 'localhost',
   port: 5432,
   max: 10,
-  idleTimeoutMillis: 30000 
+  idleTimeoutMillis: 30000
 };
 
 var pool = new pg.Pool(config);
 
 router.get('/', function(req, res){
-  // SELECT * FROM "todo";
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
@@ -34,14 +33,10 @@ router.get('/', function(req, res){
   });
 });
 
-
-// finish complete button
-//////////////////////////////////////////
 router.put('/completed', function(req, res){
   console.log(req.body);
   var id = req.body.id;
-  var task = req.body.task;
-  var compTask = req.body.comptask;
+  var compTask = req.body.compTask;
 
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -49,13 +44,13 @@ router.put('/completed', function(req, res){
       res.send(500);
     } else {
       // We connected!!!!
-      db.query('UPDATE "todo"  SET "compTask" = $3 WHERE "id" = $1; ',
-        [id, task, compTask],
+      db.query('UPDATE "todo" SET "completed" = $1 WHERE "id" = $2;',
+        [compTask, id],
         function(queryError, result){
         done();
 
         if(queryError) {
-          console.log('Error making update.');
+          console.log('Error making update.', queryError);
           res.send(500);
         } else {
           res.sendStatus(200);
@@ -64,11 +59,6 @@ router.put('/completed', function(req, res){
     } // end else
    }); // end pool.connect
 }); // end router function
-
-///////////////////////////////////////////
-
-
-
 
 router.post('/add', function(req, res){
   console.log(req.body);
