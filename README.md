@@ -36,7 +36,7 @@ Adjust the logic so that completed tasks are brought to the bottom of the page, 
 - [X] Create database
 - [ ] Take in input from user
 - [ ] Add input to database
-- [ ] append data to DOM
+- [X] append data to DOM
 - [ ] append complete and delete buttons to DOM
 
 ## Stretch
