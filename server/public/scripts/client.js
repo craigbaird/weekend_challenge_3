@@ -5,11 +5,22 @@ $(document).ready(function(){
   console.log('jQuery sourced');
   getToDoList();
 
+//////////////////////////////
+  // functionality for the complete button
+  $('#tasks').on('click', '.complete', function(){
+    console.log('Complete task: '+ $(this).data('task'));
+    $(this).css("background-color", "green");
+  });
+//////////////////////////////
+
+
+
+  // functionality for the delete button
   $('#tasks').on('click', '.delete', function(){
     console.log('Delete task: '+ $(this).data('task'));
     $.ajax({
-      type: 'DELETE', // Similar SELECT or GET
-      url: '/todo/delete/' + $(this).data('task'), // e.g. /books/delete/53
+      type: 'DELETE',
+      url: '/todo/delete/' + $(this).data('task'),
       success: function(){
         console.log("deleted task");
         getToDoList();
@@ -17,6 +28,7 @@ $(document).ready(function(){
     });
   });
 
+  // functionality for the edit button
   $('#tasks').on('click', '.edit', function(){
     console.log($(this).data('task'));
     editing = true;
@@ -25,6 +37,7 @@ $(document).ready(function(){
     $('#task').val($(this).data('task'));
   });
 
+  // functionality for the submit button
   $('#taskForm').on('submit', function(event){
     event.preventDefault();
     console.log($('#task').val());
@@ -38,7 +51,7 @@ $(document).ready(function(){
       };
       $.ajax({
         type: "PUT",
-        url: "/todo/edit", // Similar to POST (data & req.body) 
+        url: "/todo/edit",
         data: updateToMake,
         success: function(){
           console.log("updated");
@@ -51,7 +64,6 @@ $(document).ready(function(){
         url: "/todo/add",
         data: {task: $('#task').val()},
         success: function(response) {
-          // Refresh our data
           getToDoList();
         }
       });
@@ -60,6 +72,8 @@ $(document).ready(function(){
   });
 });
 
+// gets to do list from database and appends to the DOM
+// appends new tasks and buttons as they are added
 function getToDoList() {
   $.ajax({
     type: "GET",
@@ -73,12 +87,20 @@ function getToDoList() {
         var $el = $('#tasks').children().last();
         $el.append('<td>' + task.id + '</td>');
         $el.append('<td>' + task.task + '</td>');
+        $el.append('<td>' + task.completed + '</td>');
+
+
+        $el.append('<td class="completedTask"><button class="complete" data-task="' +  // complete button //////////////////////////////////
+        task.id + '">Complete</button></td>');
+
+
         $el.append('<td><button class="delete" data-task="' +
         task.id + '">Delete</button></td>');
         $el.append('<td><button class="edit" data-task="' +
         task.id + '" data-id="' +
         task.task + '" data-task="'+
         '">Edit</button></td>');
+
       }
     }
   });
