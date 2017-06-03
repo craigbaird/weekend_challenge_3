@@ -5,8 +5,10 @@ An weekend assignment creating a do do list which lets a user create tasks, mark
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 1. Download .zip of the directory
-2. npm install
-3. npm start
+2. Open .sql file and paste into Postico to create table
+3. npm install
+4. npm start
+5. type localhost:5000 into a browser
 
 ## Technologies Used
 - JavaScript
