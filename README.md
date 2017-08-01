@@ -1,5 +1,5 @@
 # To-Do List
-An weekend assignment creating a do do list which lets a user create tasks, mark tasks as complete, and delete tasks.
+An weekend assignment creating a do do list which lets a user create tasks, mark tasks as complete, and delete tasks
 
 ## Getting Started
 
